@@ -1,19 +1,24 @@
 # MSTest.AzureDevOps
 
+Data driven unit tests/automated tests with Azure DevOps test case datasource in MSTest v2.
+
 ## Build Status
+---------------
+
 [![Build Status](https://dev.azure.com/l3oferreira/GitHub/_apis/build/status/GitHub-ASP.NET%20Core-CI)](https://dev.azure.com/l3oferreira/GitHub/_build/latest?definitionId=22)
 
 
 ## Instructions
+---------------
 
 ### Installing Nuget Package
-
+----------------------------
 Find for **l3oferreira.MSTest.AzureDevOps** package:
 ![NuGet](https://img.shields.io/nuget/v/l3oferreira.MSTest.AzureDevOps.svg)
 
 
 ### Creating and configuring settings.json
-
+------------------------------------------
 After installing the Nuget package, the first step is to create a file named settings.json and confirm that the **Copy to Output Directory** property is checked with **Copy always** or **Copy if newer**.
 
 ![Visual Studio - settings.json Properties](https://github.com/l3oferreira/MSTest.AzureDevOps/blob/master/images/azure-devops-test-case.png?raw=true)
@@ -35,14 +40,14 @@ File content:
 
 
 ### Creating test case in Azure DevOps
-
+--------------------------------------
 When creating the test case, you must be informed the parameters, to be used in the automated tests. For each line of parameters *(each iteration)*, there will be a new execution of the test *(in the example below, the same method will be executed twice)*.
 
 ![Azure DevOps - Test Case](https://github.com/l3oferreira/MSTest.AzureDevOps/blob/master/images/azure-devops-test-case.png?raw=true)
 
 
 ### Implementing test method
-
+----------------------------
 When implementing the test method, you must include the **AzureDevOpsDataSource** attribute, and pass as the parameter, the id of the test case work item. The method you create must have only one argument, of type **TestCaseData**. This parameter contains the basic information of the test case *(id, title and parameters)*.
 
 Example usage:
