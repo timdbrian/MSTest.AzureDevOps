@@ -13,7 +13,7 @@
     <AssemblyVersion>1.0.2.0</AssemblyVersion>
     <FileVersion>1.0.2.0</FileVersion>
     <Version>1.0.2</Version>
-    <Description>Data driven unit test with Azure DevOps test case datasource in MSTest v2.</Description>
+    <Description>Data driven unit tests/automated tests with Azure DevOps test case datasource in MSTest v2.</Description>
   </PropertyGroup>
 
   <ItemGroup>
