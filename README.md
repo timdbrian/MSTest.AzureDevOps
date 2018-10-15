@@ -14,8 +14,11 @@ Instructions
 
 Installing Nuget Package
 ------------------------
-Find for **l3oferreira.MSTest.AzureDevOps** package:
-![NuGet](https://img.shields.io/nuget/v/l3oferreira.MSTest.AzureDevOps.svg)
+
+ Package | NuGet Stable | 
+| ------- | ------------ |
+| [l3oferreira.MSTest.AzureDevOps](https://www.nuget.org/packages/l3oferreira.MSTest.AzureDevOps/) | ![Nuget](https://img.shields.io/nuget/v/l3oferreira.MSTest.AzureDevOps.svg)
+
 
 
 Creating and configuring settings.json
