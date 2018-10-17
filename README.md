@@ -25,7 +25,7 @@ Creating and configuring settings.json
 --------------------------------------
 After installing the Nuget package, the first step is to create a file named settings.json and confirm that the **Copy to Output Directory** property is checked with **Copy always** or **Copy if newer**.
 
-![Visual Studio - settings.json Properties](https://github.com/l3oferreira/MSTest.AzureDevOps/blob/master/images/azure-devops-test-case.png?raw=true)
+![Visual Studio - settings.json Properties](https://github.com/l3oferreira/MSTest.AzureDevOps/blob/master/images/visual-studio-settings-config.png?raw=true)
 
 File content:
 
