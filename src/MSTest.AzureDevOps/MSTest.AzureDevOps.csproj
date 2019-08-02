@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>l3oferreira</Authors>
-    <PackageProjectUrl>https://github.com/l3oferreira/MSTest.AzureDevOps</PackageProjectUrl>
+    <Authors>l3oferreira,Methodic</Authors>
+    <PackageProjectUrl>https://github.com/timdbrian/MSTest.AzureDevOps</PackageProjectUrl>
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
     <IsPackable>true</IsPackable>
-    <PackageId>l3oferreira.MSTest.AzureDevOps</PackageId>
+    <PackageId>Methodic.MSTest.AzureDevOps</PackageId>
     <AssemblyVersion>1.0.2.0</AssemblyVersion>
     <FileVersion>1.0.2.0</FileVersion>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
     <Description>Data driven unit tests/automated tests with Azure DevOps test case datasource in MSTest v2.</Description>
   </PropertyGroup>
 
