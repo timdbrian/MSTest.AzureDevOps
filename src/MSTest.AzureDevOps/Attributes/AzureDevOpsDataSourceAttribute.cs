@@ -47,15 +47,15 @@ namespace MSTest.AzureDevOps.Attributes
 		/// <returns>Test data for calling test method.</returns>
 		public IEnumerable<object[]> GetData(MethodInfo methodInfo)
 		{
+			var workItemService = new WorkItemService(methodInfo);
 			var testData = new List<object[]>();                                        //Set up collection to hold all the test case data
-			var workItemRequest = WorkItemService.Instance.GetById(this.WorkItemId);    //Get work item's information by id
+			var workItemRequest = workItemService.GetById(this.WorkItemId);             //Get work item's information by id
 			Task.WaitAll(workItemRequest);                                              //Await the HTTP response
 			var workItem = workItemRequest.Result;                                      //Main work item after it is returned by the WorkItemService
 			if (string.IsNullOrWhiteSpace(workItem.TestDataSource))                     //Check if service parameters data was retrieved
 			{
-				return null;
+				Console.WriteLine("No parameter data was retrieved from AzDevOps for work item id " + this.WorkItemId);
 			}
-			//TODO: Add exception handling
 
 			var testParameters = Deserializers.GetTestParameters(workItem.Parameters);            //Convert XML parameters in work item to a usable collection
 
@@ -96,7 +96,7 @@ namespace MSTest.AzureDevOps.Attributes
 				var parameterRequests = new Dictionary<int, Task<ParameterSet>>();
 				foreach (var dataSetId in mapping.SharedParameterDataSetIds)        // Create all the requests for various datasets
 				{
-					parameterRequests.Add(dataSetId, WorkItemService.Instance.GetSharedParametersById(dataSetId));
+					parameterRequests.Add(dataSetId, workItemService.GetSharedParametersById(dataSetId));
 				}
 				Task.WaitAll(parameterRequests.Values.ToArray());                   // Await all the responses
 
@@ -105,9 +105,6 @@ namespace MSTest.AzureDevOps.Attributes
 				{
 					dataSets.Add(response.Key, response.Value.Result);              // Store the results in a dcitionary against the dataSetId for further reference
 				}
-
-
-
 				Dictionary<int, Dictionary<string, string>> parameterValues = new Dictionary<int, Dictionary<string, string>>();
 				foreach (var dataSet in dataSets)                       //Ensure that the parameters defined in the test case, are all contained in the shared data mappings
 				{
