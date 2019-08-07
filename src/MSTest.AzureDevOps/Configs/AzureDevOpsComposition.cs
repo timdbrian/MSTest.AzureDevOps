@@ -2,6 +2,7 @@
 using Microsoft.TeamFoundation;
 using Microsoft.VisualStudio.Services.Client;
 using Microsoft.VisualStudio.Services.Common;
+using Microsoft.VisualStudio.Services.Common.TokenStorage;
 using Microsoft.VisualStudio.Services.OAuth;
 using System;
 using System.Collections.ObjectModel;
@@ -38,7 +39,7 @@ namespace MSTest.AzureDevOps.Configs
 				settingsFile = new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, settingsFileName));
 			}
 
-			var builder = new ConfigurationBuilder().SetBasePath(assembly?.Location ?? AppDomain.CurrentDomain.BaseDirectory);
+			var builder = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory);
 			if (assembly != null)
 			{
 				_ = builder.AddUserSecrets(assembly, true);
@@ -64,7 +65,12 @@ namespace MSTest.AzureDevOps.Configs
 			}
 			else
 			{
-				this.Credentials = new VssAadCredential(); //Last preference is to try and retrieve the credentials interactively for an AAD backed AzDevOps instance
+				//Last preference is to try and retrieve the credentials interactively for an AAD backed AzDevOps instance
+				this.Credentials = new VssClientCredentials(false)
+				{
+					PromptType = CredentialPromptType.PromptIfNeeded
+				}; 
+				//this.Credentials.Storage = new VssClientCredentialStorage();
 			}
 
 			try
