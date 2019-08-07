@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Service response model.
 	/// </summary>
-	internal class GetByIdResponseModel
+	public class GetByIdResponseModel
 	{
 		#region Properties
 
