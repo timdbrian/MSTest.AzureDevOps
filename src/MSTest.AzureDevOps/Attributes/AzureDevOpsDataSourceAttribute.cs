@@ -93,17 +93,17 @@ namespace MSTest.AzureDevOps.Attributes
 				}
 				//Azure DevOps can link local parameters to multiple shared test parameters, across multiple work item ids
 				//Retrieve each shared parameter data set
-				var parameterRequests = new Dictionary<int, Task<ParameterSet>>();
+				var parameterRequests = new Dictionary<int, ParameterSet>();
 				foreach (var dataSetId in mapping.SharedParameterDataSetIds)        // Create all the requests for various datasets
 				{
-					parameterRequests.Add(dataSetId, workItemService.GetSharedParametersById(dataSetId));
+					var sharedParameters = workItemService.GetSharedParametersById(dataSetId).Result;
+					parameterRequests.Add(dataSetId, sharedParameters);
 				}
-				Task.WaitAll(parameterRequests.Values.ToArray());                   // Await all the responses
 
 				var dataSets = new Dictionary<int, ParameterSet>();
 				foreach (var response in parameterRequests)
 				{
-					dataSets.Add(response.Key, response.Value.Result);              // Store the results in a dcitionary against the dataSetId for further reference
+					dataSets.Add(response.Key, response.Value);              // Store the results in a dcitionary against the dataSetId for further reference
 				}
 				Dictionary<int, Dictionary<string, string>> parameterValues = new Dictionary<int, Dictionary<string, string>>();
 				foreach (var dataSet in dataSets)                       //Ensure that the parameters defined in the test case, are all contained in the shared data mappings

@@ -45,7 +45,7 @@ namespace MSTest.AzureDevOps.Services
 						{
 							Id = item.Id ?? workItemId,
 							Parameters = item.Fields["Microsoft.VSTS.TCM.Parameters"]?.ToString(),
-							TestDataSource = item.Fields["Microsoft.VSTS.TCM.LocalDataSource"]?.ToString(),
+							TestDataSource = item.Fields.TryGetValue("Microsoft.VSTS.TCM.LocalDataSource", out string val) ? val : null,
 							Title = item.Fields["System.Title"]?.ToString()
 						};
 					}
