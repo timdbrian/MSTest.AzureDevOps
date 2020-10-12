@@ -40,10 +40,6 @@ namespace MSTest.AzureDevOps.Configs
 			}
 
 			var builder = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory);
-			if (assembly != null)
-			{
-				_ = builder.AddUserSecrets(assembly, true);
-			}
 			if (settingsFile.Exists)
 			{
 				_ = builder.AddJsonFile(settingsFile.FullName, true);
@@ -51,6 +47,10 @@ namespace MSTest.AzureDevOps.Configs
 			else
 			{
 				Console.WriteLine($"Warning: No settings file was used as none was found at {settingsFile.FullName}");
+			}
+			if (assembly != null)
+			{
+				_ = builder.AddUserSecrets(assembly, true);
 			}
 			var configuration = builder.Build(); // Load configuration files
 
